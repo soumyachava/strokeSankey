@@ -1,23 +1,98 @@
 ---
-title: "Stroke Risk Sankey Diagram"
+title: "Sankey Diagram for Stroke Risk Factors in Blacks"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Stroke Risk Sankey Diagram}
-  %\VignetteEngine{rmarkdown::html_vignette}
+  %\VignetteIndexEntry{Sankey Diagram for Stroke Risk Factors in Blacks}
+  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, echo=TRUE, message=FALSE, warning=FALSE}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 9,
+  fig.height = 5
+)
 library(strokeSankey)
+```
 
+# Overview
+
+This vignette demonstrates how the `strokeSankey` package recreates the Sankey-style diagram showing the contribution of major stroke risk factors among Black populations over time.
+
+The data represent Population Attributable Risk (PAR) estimates for several risk factors across five years: 1990, 1995, 2000, 2005, and 2010.
+
+The Sankey diagram shows how the contribution of each risk factor changes across time.
+
+# Dataset
+
+The dataset included in the package is `stroke_par_blacks`.
+
+```{r}
 data(stroke_par_blacks)
+stroke_par_blacks
+```
 
+Each row corresponds to a stroke risk factor and the columns represent PAR estimates for each year.
+
+# Creating the Sankey Diagram
+
+The function `plot_sankey_stroke()` generates the Sankey diagram.
+
+```{r}
 plot_sankey_stroke(stroke_par_blacks)
+```
 
-plot_sankey_stroke(stroke_par_blacks, vertical_gap = 0.02, horizontal_gap = 0.05)
+The visualization is constructed using `ggplot2` by combining stacked rectangles for each year and flowing ribbons connecting the same risk factor across years.
 
-plot_sankey_stroke(stroke_par_blacks, vertical_gap = 0.02, horizontal_gap = 0)
+# Controlling Whitespace
 
-plot_sankey_stroke(stroke_par_blacks, vertical_gap = 0, horizontal_gap = 0.05)
+The function allows control over the whitespace between visual elements.
 
-plot_sankey_stroke(stroke_par_blacks, vertical_gap = 0, horizontal_gap = 0)
+- `vertical_gap` controls the vertical spacing between stacked ribbons
+- `horizontal_gap` controls the horizontal spacing between year blocks
+
+## Example: Both vertical and  Horizontal whitespace
+
+```{r}
+plot_sankey_stroke(
+  stroke_par_blacks,
+  vertical_gap = 0.02,
+  horizontal_gap = 0.05
+)
+```
+
+## Example: No horizontal whitespace
+
+```{r}
+plot_sankey_stroke(
+  stroke_par_blacks,
+  vertical_gap = 0.02,
+  horizontal_gap = 0
+)
+```
+
+## Example: No vertical whitespace
+
+```{r}
+plot_sankey_stroke(
+  stroke_par_blacks,
+  vertical_gap = 0,
+  horizontal_gap = 0.05
+)
+```
+
+## Example: No whitespace
+
+```{r}
+plot_sankey_stroke(
+  stroke_par_blacks,
+  vertical_gap = 0,
+  horizontal_gap = 0
+)
+```
+
+# Summary
+
+This package demonstrates how Sankey-style diagrams can be created using `ggplot2` with custom geometry. The plotting function also provides parameters that allow users to control the whitespace between visual elements.
