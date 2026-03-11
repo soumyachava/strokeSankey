@@ -1,0 +1,23 @@
+---
+title: "Stroke Risk Sankey Diagram"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Stroke Risk Sankey Diagram}
+  %\VignetteEngine{rmarkdown::html_vignette}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, echo=TRUE, message=FALSE, warning=FALSE}
+library(strokeSankey)
+
+data(stroke_par_blacks)
+
+plot_sankey_stroke(stroke_par_blacks)
+
+plot_sankey_stroke(stroke_par_blacks, vertical_gap = 0.02, horizontal_gap = 0.05)
+
+plot_sankey_stroke(stroke_par_blacks, vertical_gap = 0.02, horizontal_gap = 0)
+
+plot_sankey_stroke(stroke_par_blacks, vertical_gap = 0, horizontal_gap = 0.05)
+
+plot_sankey_stroke(stroke_par_blacks, vertical_gap = 0, horizontal_gap = 0)
