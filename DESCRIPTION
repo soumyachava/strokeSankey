@@ -23,3 +23,5 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: https://github.com/soumyachava/strokeSankey
+BugReports: https://github.com/soumyachava/strokeSankey/issues
